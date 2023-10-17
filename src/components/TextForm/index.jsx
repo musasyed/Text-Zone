@@ -48,8 +48,8 @@ const removeSpace = () => {
   <h1>{props.heading}</h1>
   <textarea className="form-control" value={text}  style={{backgroundColor:props.mode==='light'?'light':'light'}} id="box-area" onChange={handleText} rows="8"></textarea>
 </div>
-
-   <button className="button btn btn-primary" onClick={handleUpperCase}>Convert into UpperCase</button> 
+<div className='mobile-view'>
+   <button className="button btn btn-primary mx-3" onClick={handleUpperCase}>Convert into UpperCase</button> 
 
 
 <button className="button btn btn-primary mx-3" onClick={handleLowerCase}>Convert into LowerCase</button> 
@@ -63,7 +63,7 @@ const removeSpace = () => {
 
     <button className="button btn btn-primary mx-3"  onClick={removeSpace}>Remove Extra Space</button> 
 
-
+    </div>
 
 
 
