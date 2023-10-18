@@ -29,9 +29,7 @@ const handleReset=()=>{
 }
 
 const handleCopy=()=>{
-let text=document.getElementById("box-area")
-text.select();
-navigator.clipboard.writeText(text.value);
+navigator.clipboard.writeText(text);
 props.showalert( "success"," Copied to Clipboard!")
 }
 
@@ -49,19 +47,19 @@ const removeSpace = () => {
   <textarea className="form-control" value={text}  style={{backgroundColor:props.mode==='light'?'light':'light'}} id="box-area" onChange={handleText} rows="8"></textarea>
 </div>
 <div className='mobile-view'>
-   <button className="button btn btn-primary mx-3" onClick={handleUpperCase}>Convert into UpperCase</button> 
+   <button disabled={text.length===0} className="button btn btn-primary mx-3" onClick={handleUpperCase}>Convert into UpperCase</button> 
 
 
-<button className="button btn btn-primary mx-3" onClick={handleLowerCase}>Convert into LowerCase</button> 
+<button disabled={text.length===0}  className="button btn btn-primary mx-3" onClick={handleLowerCase}>Convert into LowerCase</button> 
 
 
-   <button className="button btn btn-primary mx-3" onClick={handleReset}>Reset</button> 
+   <button disabled={text.length===0}  className="button btn btn-primary mx-3" onClick={handleReset}>Reset</button> 
 
 
-    <button className="button btn btn-primary mx-3"  onClick={handleCopy}>Copy Text</button> 
+    <button disabled={text.length===0} className="button btn btn-primary mx-3"  onClick={handleCopy}>Copy Text</button> 
 
 
-    <button className="button btn btn-primary mx-3"  onClick={removeSpace}>Remove Extra Space</button> 
+    <button disabled={text.length===0} className="button btn btn-primary mx-3"  onClick={removeSpace}>Remove Extra Space</button> 
 
     </div>
 
@@ -70,11 +68,11 @@ const removeSpace = () => {
 <div className='container my-4' style={{color:props.mode==='dark'?'white':'black'}} >
 <h2>Your Text Summary</h2>
  {/* <p>Words are {text.split(" ").length} and Characters are {text.length}</p> */}
-<p>{text.replace(/\n/g, " ").split(' ').filter(value => value != "").length} words</p>
+<p>{text.split(/\s+/).filter((element)=>{return element.length!==0}).length} words</p>
  <p>{text.trim().length} characters</p>
 <p> {0.008 * text.trim().length} reading time in Minutes</p> 
 <h2>Preview</h2>
-<p>{text.length>0?text:"Enter something to above textbox to preview it"}</p>
+<p>{text.length>0?text:"Nothing to Preview"}</p>
 </div>
     </div>
   )
